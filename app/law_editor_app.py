@@ -1,10 +1,16 @@
 import streamlit as st
 import sys
 import os
+import importlib.util
 
-# 경로 오류 방지: law_processor 경로를 명확히 설정
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "processing")))
-from law_processor import run_search_logic, run_amendment_logic
+# 🔒 importlib으로 law_processor 안전하게 불러오기
+processor_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "processing", "law_processor.py"))
+spec = importlib.util.spec_from_file_location("law_processor", processor_path)
+law_processor = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(law_processor)
+
+run_search_logic = law_processor.run_search_logic
+run_amendment_logic = law_processor.run_amendment_logic
 
 st.set_page_config(layout="wide")
 st.title("📘 부칙개정 도우미")
