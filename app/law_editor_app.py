@@ -3,12 +3,14 @@ import sys
 import os
 import importlib.util
 
-# 🔒 importlib으로 law_processor 안전하게 불러오기
-processor_path = os.path.abspath(os.path.join(os.getcwd(), "processing", "law_processor.py"))
+# 🔐 현재 작업 디렉토리 기준으로 law_processor.py 절대경로 import
+base_dir = os.path.abspath(os.path.join(os.getcwd(), "processing"))
+processor_path = os.path.join(base_dir, "law_processor.py")
 spec = importlib.util.spec_from_file_location("law_processor", processor_path)
 law_processor = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(law_processor)
 
+# 🔁 함수 직접 연결
 run_search_logic = law_processor.run_search_logic
 run_amendment_logic = law_processor.run_amendment_logic
 
