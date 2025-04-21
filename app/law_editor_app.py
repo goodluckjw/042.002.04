@@ -4,7 +4,7 @@ import os
 import importlib.util
 
 # 🔒 importlib으로 law_processor 안전하게 불러오기
-processor_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "processing", "law_processor.py"))
+processor_path = os.path.abspath(os.path.join(os.getcwd(), "processing", "law_processor.py"))
 spec = importlib.util.spec_from_file_location("law_processor", processor_path)
 law_processor = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(law_processor)
