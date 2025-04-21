@@ -3,7 +3,7 @@ import sys
 import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "processing")))
-from procession.law_processor import run_search_logic, run_amendment_logic
+from processing.law_processor import run_search_logic, run_amendment_logic
 
 st.set_page_config(layout="wide")
 st.title("📘 부칙개정 도우미")
