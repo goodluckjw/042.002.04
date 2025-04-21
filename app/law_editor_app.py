@@ -2,7 +2,8 @@ import streamlit as st
 import sys
 import os
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "processing"))
+# 경로 오류 방지: law_processor 경로를 명확히 설정
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "processing")))
 from law_processor import run_search_logic, run_amendment_logic
 
 st.set_page_config(layout="wide")
